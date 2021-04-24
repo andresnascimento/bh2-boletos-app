@@ -7,8 +7,8 @@ import 'package:flutter_svg/svg.dart';
 
 //TODO implement validation and error handling for all the inputs
 
-class SingUpPage extends StatelessWidget {
-  static String id = 'singUp_screen';
+class SignUpPage extends StatelessWidget {
+  static String id = 'signUp_screen';
 
   @override
   Widget build(BuildContext context) {

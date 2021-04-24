@@ -1,5 +1,5 @@
 import 'package:bh2_boletos/screens/login_reset_passwd/login_screen.dart';
-import 'package:bh2_boletos/screens/singup/singup_screen.dart';
+import 'package:bh2_boletos/screens/signup/signup_screen.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:bh2_boletos/widgets/button_widget.dart';
 import 'package:bh2_boletos/widgets/image_outlined_button.dart';
@@ -113,7 +113,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               children: <Widget>[
                                 ImageOutlineButton(
                                   onTap: () {
-                                    Navigator.pushNamed(context, SingUpPage.id);
+                                    Navigator.pushNamed(context, SignUpPage.id);
                                   },
                                   buttonImage: 'assets/images/email-icon.svg',
                                   buttonLabel: 'Seu e-mail',

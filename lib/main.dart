@@ -1,6 +1,6 @@
 import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
 import 'package:bh2_boletos/screens/dashboard/dashboard_screen.dart';
-import 'package:bh2_boletos/screens/singup/singup_screen.dart';
+import 'package:bh2_boletos/screens/signup/signup_screen.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       initialRoute: OnboardingScreen.id,
       routes: {
         OnboardingScreen.id: (context) => OnboardingScreen(),
-        SingUpPage.id: (context) => SingUpPage(),
+        SignUpPage.id: (context) => SignUpPage(),
         DashboardPage.id: (context) => DashboardPage()
       },
     );
