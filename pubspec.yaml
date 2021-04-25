@@ -37,6 +37,8 @@ dependencies:
   provider: ^5.0.0
   intl: ^0.17.0
   money2: ^2.0.3
+  syncfusion_flutter_charts: ^19.1.57+1
+  syncfusion_flutter_core: ^19.1.57+1
 
 dev_dependencies:
   flutter_test:
