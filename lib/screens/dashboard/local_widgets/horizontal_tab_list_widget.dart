@@ -35,7 +35,7 @@ class _HorizontalTabListState extends State<HorizontalTabList> {
     MonthlyTransactionsNotifier monthlyNotifier =
         Provider.of<MonthlyTransactionsNotifier>(context);
     return SizedBox(
-      height: 80.0,
+      height: 70.0,
       child: ListView.builder(
         controller: _controller,
         physics: ClampingScrollPhysics(),
@@ -48,15 +48,16 @@ class _HorizontalTabListState extends State<HorizontalTabList> {
             controller: _controller,
             index: index,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              // margin: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
               decoration: BoxDecoration(
+                  color: kColorBlack,
                   border: Border(
-                bottom: BorderSide(
-                    color: index == monthlyNotifier.activeIdex
-                        ? kColorPrimary
-                        : kColorBlack),
-              )),
+                    bottom: BorderSide(
+                        color: index == monthlyNotifier.activeIdex
+                            ? kColorPrimary
+                            : kColorBlack),
+                  )),
               child: GestureDetector(
                 onTap: () {
                   monthlyNotifier.setActivedTabIndex(index);

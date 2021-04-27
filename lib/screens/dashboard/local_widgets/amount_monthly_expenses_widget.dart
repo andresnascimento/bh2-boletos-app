@@ -18,10 +18,13 @@ class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+      color: kColorBlack,
+      height: 120,
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             'Total de despesas neste mês',
