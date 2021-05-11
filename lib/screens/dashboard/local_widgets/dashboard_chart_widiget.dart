@@ -1,11 +1,12 @@
 import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
 import 'package:bh2_boletos/models/dashboard_content.dart';
+import 'package:bh2_boletos/models/expenses.dart';
+import 'package:bh2_boletos/models/monthly_expenses_amount.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_core/core.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 class DashboardChart extends StatefulWidget {
@@ -16,8 +17,10 @@ class DashboardChart extends StatefulWidget {
 class _DashboardChartState extends State<DashboardChart> {
   @override
   Widget build(BuildContext context) {
-    MonthlyTransactionsNotifier monthlyNotifier =
-        Provider.of<MonthlyTransactionsNotifier>(context);
+    // MonthlyTransactionsNotifier monthlyNotifier =
+    //     Provider.of<MonthlyTransactionsNotifier>(context);
+    final expensesData = Provider.of<Expenses>(context);
+    // final monthlyList = expensesData.expenseList;
     return Container(
       height: 250,
       child: SfTheme(
@@ -40,23 +43,23 @@ class _DashboardChartState extends State<DashboardChart> {
             numberFormat: NumberFormat.compactCurrency(symbol: 'R\$'),
           ),
           series: <ChartSeries>[
-            ColumnSeries<DashboardContent, String>(
+            ColumnSeries<MonthlyExpensesAmount, String>(
               // selectionBehavior: _selectionBehavior,
               selectionBehavior: SelectionBehavior(
                 enable: true,
-                selectionController: RangeController(
-                  start: monthlyNotifier.activeIdex,
-                  end: monthlyNotifier.activeIdex,
-                ),
+                // selectionController: RangeController(
+                //   start: monthlyNotifier.activeIdex,
+                //   end: monthlyNotifier.activeIdex,
+                // ),
               ),
 
               // initialSelectedDataIndexes: <int>[widget.monthIndex],
               enableTooltip: false,
-              dataSource: monthlyNotifier.monthlyData,
-              xValueMapper: (DashboardContent month, _) =>
+              dataSource: expensesData.expensesAmount,
+              xValueMapper: (MonthlyExpensesAmount month, _) =>
                   month.month.substring(0, 3),
 
-              yValueMapper: (DashboardContent amount, _) => amount.amount,
+              yValueMapper: (MonthlyExpensesAmount amount, _) => amount.amount,
               width: 0.2,
               color: kColorPrimary,
               borderRadius: BorderRadius.only(

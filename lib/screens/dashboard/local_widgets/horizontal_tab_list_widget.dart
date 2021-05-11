@@ -1,6 +1,8 @@
 import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
+import 'package:bh2_boletos/models/expenses.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -32,8 +34,10 @@ class _HorizontalTabListState extends State<HorizontalTabList> {
 
   @override
   Widget build(BuildContext context) {
-    MonthlyTransactionsNotifier monthlyNotifier =
-        Provider.of<MonthlyTransactionsNotifier>(context);
+    // MonthlyTransactionsNotifier monthlyNotifier =
+    //     Provider.of<MonthlyTransactionsNotifier>(context);
+    final expensesData = Provider.of<Expenses>(context);
+    final monthlyData = expensesData.expensesAmount;
     return SizedBox(
       height: 70.0,
       child: ListView.builder(
@@ -41,7 +45,7 @@ class _HorizontalTabListState extends State<HorizontalTabList> {
         physics: ClampingScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: monthlyNotifier.monthlyDataLength,
+        itemCount: monthlyData.length,
         itemBuilder: (BuildContext context, int index) {
           return AutoScrollTag(
             key: ValueKey(index),
@@ -50,26 +54,24 @@ class _HorizontalTabListState extends State<HorizontalTabList> {
             child: Container(
               // margin: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-              decoration: BoxDecoration(
-                  color: kColorBlack,
-                  border: Border(
-                    bottom: BorderSide(
-                        color: index == monthlyNotifier.activeIdex
-                            ? kColorPrimary
-                            : kColorBlack),
-                  )),
+              // decoration: BoxDecoration(
+              //     color: kColorBlack,
+              //     border: Border(
+              //       bottom: BorderSide(
+              //           color: index == monthlyData
+              //               ? kColorPrimary
+              //               : kColorBlack),
+              //     )),
               child: GestureDetector(
                 onTap: () {
-                  monthlyNotifier.setActivedTabIndex(index);
+                  // monthlyNotifier.setActivedTabIndex(index);
                 },
                 child: Center(
                   child: Text(
-                    '${monthlyNotifier.monthlyData[index].month}',
+                    DateFormat.MMMM()
+                        .format(DateTime.parse(monthlyData[index].month)),
                     style: kTextBodySM.copyWith(
-                        color: index == monthlyNotifier.activeIdex
-                            ? kColorPrimary
-                            : kColorGray300,
-                        fontWeight: FontWeight.bold),
+                        color: kColorPrimary, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

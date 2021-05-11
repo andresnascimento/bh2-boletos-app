@@ -1,4 +1,5 @@
 import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
+import 'package:bh2_boletos/models/expenses.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:bh2_boletos/screens/dashboard/local_widgets/horizontal_tab_list_widget.dart';
 import 'package:bh2_boletos/widgets/currency_formater_widget.dart';
@@ -22,8 +23,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    MonthlyTransactionsNotifier monthlyNotifier =
-        Provider.of<MonthlyTransactionsNotifier>(context);
+    // MonthlyTransactionsNotifier monthlyNotifier =
+    //     Provider.of<MonthlyTransactionsNotifier>(context);
     return Container(
       child: Scaffold(
         backgroundColor: kColorBlack,
@@ -62,16 +63,23 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
         ),
-        body: ListView(
+        body: Column(
+          // TODO change the page to be scrollable instead of only the list of expenses
           children: <Widget>[
-            HorizontalTabList(),
-            AmountMonthlyExpenses(
-              currencyAmount: monthlyNotifier
-                  .monthlyData[monthlyNotifier.activeIdex].amount,
-            ),
             //TODO  define a solution to hilight the bar when select the month
-            DashboardChart(),
-            ExpensesListViewByDate(),
+            Expanded(child: HorizontalTabList()),
+            Expanded(
+              child: AmountMonthlyExpenses(),
+            ),
+            Expanded(child: DashboardChart()),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: ExpensesListViewByDate(),
+              ),
+            ),
           ],
         ),
 
