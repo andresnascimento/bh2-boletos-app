@@ -63,24 +63,26 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
         ),
-        body: Column(
-          // TODO change the page to be scrollable instead of only the list of expenses
-          children: <Widget>[
-            //TODO  define a solution to hilight the bar when select the month
-            Expanded(child: HorizontalTabList()),
-            Expanded(
-              child: AmountMonthlyExpenses(),
-            ),
-            Expanded(child: DashboardChart()),
-            Expanded(
-              child: Container(
+        body: SingleChildScrollView(
+          child: Column(
+            // TODO change the page to be scrollable instead of only the list of expenses
+            children: <Widget>[
+              //TODO  define a solution to hilight the bar when select the month
+              HorizontalTabList(),
+              AmountMonthlyExpenses(),
+              DashboardChart(),
+              Container(
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(16.0),
+                      topLeft: Radius.circular(16.0)),
                 ),
                 child: ExpensesListViewByDate(),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
 
         floatingActionButton: FloatingActionButton(

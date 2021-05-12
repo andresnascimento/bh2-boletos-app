@@ -12,6 +12,7 @@ class AmountMonthlyExpenses extends StatefulWidget {
 
 class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
   bool isAmountVisible = true;
+  final formatCurrency = NumberFormat("#,##0.00", "pt_BR");
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
             children: <Widget>[
               isAmountVisible
                   ? Text(
-                      monthlyAmount[5].amount.toString(),
+                      //TODO get the index from the active month
+                      formatCurrency.format(monthlyAmount[5].amount).toString(),
                       style: kTextHeader.copyWith(color: Colors.white),
                     )
                   : Container(
@@ -55,6 +57,7 @@ class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
                 ),
                 onPressed: () {
                   print(DateFormat.MMMM().format(DateTime.parse('2020-01-02')));
+                  print(DateFormat.MMMM().format(DateTime.now()));
 
                   setState(() {
                     isAmountVisible = !isAmountVisible;

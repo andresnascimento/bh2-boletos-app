@@ -1,5 +1,6 @@
 import 'package:bh2_boletos/models/monthly_expenses_amount.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './expense.dart';
 import 'monthly_expenses_amount.dart';
 
@@ -18,8 +19,7 @@ class Expenses with ChangeNotifier {
       id: 'b1',
     ),
     Expense(
-      imageUrl:
-          'https://lh3.googleusercontent.com/proxy/jiVtvLr0AQr3cQbK5wdvRMroJBiGaTxdudvwXVgYMx5e3JWJ0p2zquDVA9MqopSUuuAu8yVGBsK1-pjSx4AdBl37hQoXkJH6Z_CXxGHzPpuzF87uQ1dRxBG5noxm',
+      imageUrl: 'https://cvtr.rj.gov.br/wp-content/uploads/2019/08/Foto-1.jpeg',
       expenseDate: DateTime.now(),
       status: 'late',
       name: 'Fornecedor XYZ',
@@ -126,5 +126,15 @@ class Expenses with ChangeNotifier {
 
   List<MonthlyExpensesAmount> get expensesAmount {
     return [..._expensesAmount];
+  }
+
+  String _activeMonth = DateFormat.MMMM().format(DateTime.now());
+  String get activeMonth {
+    return _activeMonth;
+  }
+
+  void setActiveMonth(String month) {
+    _activeMonth = DateFormat.MMMM().format(DateTime.parse(month));
+    notifyListeners();
   }
 }

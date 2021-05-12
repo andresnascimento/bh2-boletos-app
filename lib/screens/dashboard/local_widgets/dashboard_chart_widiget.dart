@@ -1,5 +1,3 @@
-import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
-import 'package:bh2_boletos/models/dashboard_content.dart';
 import 'package:bh2_boletos/models/expenses.dart';
 import 'package:bh2_boletos/models/monthly_expenses_amount.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
@@ -9,18 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
-class DashboardChart extends StatefulWidget {
-  @override
-  _DashboardChartState createState() => _DashboardChartState();
-}
-
-class _DashboardChartState extends State<DashboardChart> {
+class DashboardChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // MonthlyTransactionsNotifier monthlyNotifier =
-    //     Provider.of<MonthlyTransactionsNotifier>(context);
     final expensesData = Provider.of<Expenses>(context);
-    // final monthlyList = expensesData.expenseList;
     return Container(
       height: 250,
       child: SfTheme(
@@ -40,25 +30,15 @@ class _DashboardChartState extends State<DashboardChart> {
           ),
           primaryYAxis: NumericAxis(
             isVisible: false,
-            numberFormat: NumberFormat.compactCurrency(symbol: 'R\$'),
           ),
           series: <ChartSeries>[
             ColumnSeries<MonthlyExpensesAmount, String>(
-              // selectionBehavior: _selectionBehavior,
-              selectionBehavior: SelectionBehavior(
-                enable: true,
-                // selectionController: RangeController(
-                //   start: monthlyNotifier.activeIdex,
-                //   end: monthlyNotifier.activeIdex,
-                // ),
-              ),
-
-              // initialSelectedDataIndexes: <int>[widget.monthIndex],
               enableTooltip: false,
               dataSource: expensesData.expensesAmount,
-              xValueMapper: (MonthlyExpensesAmount month, _) =>
-                  month.month.substring(0, 3),
-
+              xValueMapper: (MonthlyExpensesAmount monthList, _) =>
+                  DateFormat.MMMM()
+                      .format(DateTime.parse(monthList.month))
+                      .substring(0, 3),
               yValueMapper: (MonthlyExpensesAmount amount, _) => amount.amount,
               width: 0.2,
               color: kColorPrimary,
