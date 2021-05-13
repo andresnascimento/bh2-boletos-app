@@ -1,15 +1,11 @@
-import 'package:bh2_boletos/controller/monthly_transactions_notifier.dart';
-import 'package:bh2_boletos/models/expenses.dart';
-import 'package:bh2_boletos/utilities/constants.dart';
-import 'package:bh2_boletos/screens/dashboard/local_widgets/horizontal_tab_list_widget.dart';
-import 'package:bh2_boletos/widgets/currency_formater_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+
 import 'local_widgets/amount_monthly_expenses_widget.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'local_widgets/dashboard_chart_widiget.dart';
 import 'local_widgets/expenses_list_view_widget.dart';
+import 'local_widgets/horizontal_tab_list_widget.dart';
+
+import '../../utilities/constants.dart';
 
 class DashboardPage extends StatefulWidget {
   static String id = 'dashboard_screen';
