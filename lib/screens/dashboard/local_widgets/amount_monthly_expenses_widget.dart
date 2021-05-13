@@ -1,22 +1,23 @@
+import 'package:bh2_boletos/models/expenses.dart';
 import 'package:bh2_boletos/utilities/constants.dart';
 import 'package:bh2_boletos/widgets/currency_formater_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class AmountMonthlyExpenses extends StatefulWidget {
-  final double currencyAmount;
-  const AmountMonthlyExpenses({
-    @required this.currencyAmount,
-  });
-
   @override
   _AmountMonthlyExpensesState createState() => _AmountMonthlyExpensesState();
 }
 
 class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
   bool isAmountVisible = true;
+  final formatCurrency = NumberFormat("#,##0.00", "pt_BR");
 
   @override
   Widget build(BuildContext context) {
+    final expensesData = Provider.of<Expenses>(context);
+    final monthlyAmount = expensesData.expensesAmount;
     return Container(
       color: kColorBlack,
       height: 120,
@@ -33,9 +34,10 @@ class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
           Row(
             children: <Widget>[
               isAmountVisible
-                  ? CurrencyFormatedValue(
-                      currencyAmount: widget.currencyAmount,
-                      textStyle: kTextHeader.copyWith(color: Colors.white),
+                  ? Text(
+                      //TODO get the index from the active month
+                      formatCurrency.format(monthlyAmount[5].amount).toString(),
+                      style: kTextHeader.copyWith(color: Colors.white),
                     )
                   : Container(
                       width: 150,
@@ -54,6 +56,9 @@ class _AmountMonthlyExpensesState extends State<AmountMonthlyExpenses> {
                   size: 24,
                 ),
                 onPressed: () {
+                  print(DateFormat.MMMM().format(DateTime.parse('2020-01-02')));
+                  print(DateFormat.MMMM().format(DateTime.now()));
+
                   setState(() {
                     isAmountVisible = !isAmountVisible;
                   });
